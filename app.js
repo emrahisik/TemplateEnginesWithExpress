@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require("path");
+const { engine } = require('express-handlebars')
 
 const app = express();
 
-app.set('view engine', 'pug');
+// Register the template engine then set it in express
+app.engine('hbs', engine({layoutsDir: 'views/layout', defaultLayout: 'main-layout', extname: 'hbs'}))
+app.set('view engine', 'hbs');
 app.set('views', 'views');
 // var bodyParser = require('body-parser');
 const adminRouter = require('./routes/admin');
@@ -18,7 +21,7 @@ app.use(express.static(path.join(__dirname,'public')))
 app.use('/admin',adminRouter.router);
 app.use(shopRouter);
 app.use((req,res,next)=>{
-  res.status(404).render('404',{docTitle: '404 Not Found'})
+  res.status(404).render('404',{docTitle: '404 Not Found', layout: 'main-layout'})
 })
 
 app.listen(3000, ()=> console.log('Listening at Port 3000'))
