@@ -20,3 +20,11 @@
 .form-control input:focus {
     outline-color: rgb(49, 4, 104);
 }
+button{
+    background-color: rgb(49, 4, 104);
+    padding: .5rem;
+    color: orange;
+    border: none;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }

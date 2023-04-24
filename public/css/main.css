@@ -11,6 +11,7 @@ body {
 }
 
 main{
+  padding-top: 1rem;
   margin-left: 3rem;
 }
 
@@ -94,8 +95,8 @@ main{
 
 .btn {
   font: inherit;
-  border: 1px solid darkorange;
-  color: darkorange;
+  border: 1px solid rgb(49, 4, 104);
+  color: rgb(49, 4, 104);
   background: white;
   border-radius: 3px;
   cursor: pointer;
@@ -103,6 +104,6 @@ main{
 
 .btn:hover,
 .btn:active {
-  background-color: darkorange;
+  background-color: rgb(49, 4, 104);
   color: white;
 }
