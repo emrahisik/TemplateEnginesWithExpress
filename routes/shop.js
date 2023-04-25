@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const path = require("path");
 const products = require('./admin').products;
 
 router.get('/',(req,res,next)=>{

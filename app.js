@@ -1,22 +1,16 @@
 const express = require('express');
 const path = require("path");
-// const { engine } = require('express-handlebars')
 
-const app = express();
-
-// Register the template engine then set it in express
-// app.engine('hbs', engine({layoutsDir: 'views/layout', defaultLayout: 'main-layout', extname: 'hbs'}))
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-// var bodyParser = require('body-parser');
 const adminRouter = require('./routes/admin');
 const shopRouter = require('./routes/shop');
 
-// app.use(bodyParser.urlencoded({extended:false}))
+const app = express();
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname,'public')))
-
-// app.use('/users',(req,res,next)=>res.status(200).send('<h1>UserPage</h1>'));
 
 app.use('/admin',adminRouter.router);
 app.use(shopRouter);
