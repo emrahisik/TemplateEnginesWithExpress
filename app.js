@@ -1,27 +1,33 @@
-const express = require('express');
+const express = require("express");
 const path = require("path");
-const { engine } = require('express-handlebars')
+const { engine } = require("express-handlebars");
+
+const adminRouter = require("./routes/admin");
+const shopRouter = require("./routes/shop");
 
 const app = express();
 
 // Register the template engine then set it in express
-app.engine('hbs', engine({layoutsDir: 'views/layout', defaultLayout: 'main-layout', extname: 'hbs'}))
-app.set('view engine', 'hbs');
-app.set('views', 'views');
-// var bodyParser = require('body-parser');
-const adminRouter = require('./routes/admin');
-const shopRouter = require('./routes/shop');
+app.engine(
+  "hbs",
+  engine({
+    layoutsDir: "views/layout",
+    defaultLayout: "main-layout",
+    extname: "hbs",
+  })
+);
+app.set("view engine", "hbs");
+app.set("views", "views");
 
-// app.use(bodyParser.urlencoded({extended:false}))
-app.use(express.urlencoded({extended: true}))
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
-// app.use('/users',(req,res,next)=>res.status(200).send('<h1>UserPage</h1>'));
-
-app.use('/admin',adminRouter.router);
+app.use("/admin", adminRouter.router);
 app.use(shopRouter);
-app.use((req,res,next)=>{
-  res.status(404).render('404',{docTitle: '404 Not Found', layout: 'main-layout'})
-})
+app.use((req, res, next) => {
+  res
+    .status(404)
+    .render("404", { docTitle: "404 Not Found", layout: "main-layout" });
+});
 
-app.listen(3000, ()=> console.log('Listening at Port 3000'))
+app.listen(3000, () => console.log("Listening at Port 3000"));
