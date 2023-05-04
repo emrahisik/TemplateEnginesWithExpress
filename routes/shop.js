@@ -1,9 +1,6 @@
-const router = require('express').Router();
-const products = require('./admin').products;
+const router = require("express").Router();
+const { getProducts } = require("../controllers/products.controller");
 
-router.get('/',(req,res,next)=>{
-  console.log('sh', products)
-  res.render('shop', { docTitle: 'My Shop', products: products, productCSS: true, shopActive: true});
-});
+router.route('/').get(getProducts);
 
 module.exports = router;
