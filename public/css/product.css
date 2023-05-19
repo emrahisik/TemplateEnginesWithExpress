@@ -1,8 +1,4 @@
-.product-form {
-    width: 20rem;
-    max-width: 90%;
-    margin: auto;
-}
+
 
 .product-item {
     width: 20rem;
@@ -20,6 +16,15 @@
     margin-bottom: 0.5rem;
 }
 
-.product__description {
+.product__description, .product__title {
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product__description:hover, .product__title:hover {
+    overflow:visible;
+    text-overflow:unset;
+    white-space:normal;
 }
