@@ -1,18 +1,20 @@
-const express = require('express');
+const express = require("express");
 const path = require("path");
 
-const adminRouter = require('./routes/admin');
-const shopRouter = require('./routes/shop');
+const adminRouter = require("./routes/admin");
+const shopRouter = require("./routes/shop");
+const notFound = require('./controllers/404.controller')
 
 const app = express();
 
-app.use(express.urlencoded({extended: true}))
-app.use(express.static(path.join(__dirname,'public')))
+app.set("view engine", "ejs");
+app.set("views", "views");
 
-app.use('/admin',adminRouter.router);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/admin", adminRouter);
 app.use(shopRouter);
-app.use((req,res,next)=>{
-  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
-})
+app.use(notFound);
 
-app.listen(3000, ()=> console.log('Listening on Port 3000'))
+app.listen(3000, () => console.log("Listening at Port 3000"));

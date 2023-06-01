@@ -1,0 +1,40 @@
+.form-control{
+    margin: 1rem 0;
+}
+.form-control label,
+.form-control input{
+    display: block;
+}
+.form-control label{
+    font-weight: 600;
+}
+.form-control input, .form-control textarea{
+    border: 2px solid rgb(49, 4, 104);
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    font: inherit;
+    font-size: 0.8rem;
+    border-radius: .5rem;
+}
+
+.form-control input:focus {
+    outline-color: rgb(49, 4, 104);
+}
+button{
+    color: rgb(49, 4, 104);
+    padding: .75rem;
+    background-color: orange;
+    border: 2px solid rgb(49, 4, 104);
+    border-radius: 1.5rem;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: large;
+  }
+button:hover{
+    background-color: rgb(49, 4, 104);
+    color: orange;
+}
+
+input, textarea, label{
+    min-width: 20rem;
+}
