@@ -4,24 +4,27 @@ exports.getAddProduct = (req, res, next) => {
   res.render("admin/add-product", {
     docTitle: "Add Product",
     formsCSS: true,
-    adminActive: true,
-    layout: "main-layout",
+    path: '/admin/add-product',
   });
 };
 
 exports.postAddProduct = (req, res, next) => {
-  const product = new Product(req.body);
+  const {title, imageUrl, description, price} = req.body
+  const product = new Product(title, imageUrl, description, price);
   product.save();
   res.redirect("/");
 };
 
+exports.updateProduct = (req,res,next) => {
+
+}
+
 exports.getProducts = async (req, res, next) => {
   const products = await Product.fetchAll()
-  res.render("shop/product-list", {
-    docTitle: "My Shop",
+  res.render("admin/products", {
+    docTitle: "Admin Products",
     products: products,
-    productCSS: true,
-    shopActive: true,
+    path: '/admin/products',
   });
 }
 
