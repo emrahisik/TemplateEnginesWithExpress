@@ -1,0 +1,22 @@
+[
+  {
+    "product": {
+      "id": "2",
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoVE7MY1WkgVRt7XrpAO2yqeL61jKIlYik55ItE52CPmAC_M-c",
+      "price": 19.99,
+      "description": "A very interesting book about so many even more interesting things!"
+    },
+    "quantity": 1
+  },
+  {
+    "product": {
+      "id": "2",
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoVE7MY1WkgVRt7XrpAO2yqeL61jKIlYik55ItE52CPmAC_M-c",
+      "price": 19.99,
+      "description": "A very interesting book about so many even more interesting things!"
+    },
+    "quantity": 1
+  }
+]
