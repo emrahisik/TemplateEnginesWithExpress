@@ -1,17 +1,19 @@
-const fs = require('fs')
-const path = require('path')
-const promisify = require('util').promisify
+const {path, readFile, writeFile} = require('../utils/CRUDL')
 
 const dbPath = path.join(require.main.path, 'db', 'products.json')
-const getFileContent = promisify(fs.readFile)
+const getFileContent = readFile
 
 module.exports = class Product {
   
-  constructor(reqBody){
-    this.title = reqBody.title
+  constructor(title, imageUrl, description, price){
+    this.title = title;
+    this.description = description
+    this.imageUrl = imageUrl
+    this.price = parseFloat(price)
   }
   
   async save(){
+    this.id = (Math.random()*Math.random()).toString().split('.')[1]
     let products = [];
     try {
       const content = await getFileContent(dbPath)
@@ -20,7 +22,17 @@ module.exports = class Product {
       console.log(error)
     }
     products.push(this)
-    fs.writeFile(dbPath, JSON.stringify(products),(err)=> console.log(err))
+    writeFile(dbPath, JSON.stringify(products),(err)=> console.log(err))
+  }
+
+  static async fetchById(id){
+    try {
+      const content = await getFileContent(dbPath)
+      const products = JSON.parse(content)
+      return products.find((product)=> product.id === id)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   static async fetchAll (){
