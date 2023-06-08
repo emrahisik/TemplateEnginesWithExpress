@@ -1,0 +1,28 @@
+<%- include('../includes/head.ejs') -%>
+  <link rel="stylesheet" href="/css/forms.css" />
+</head>
+<body>
+  <%- include('../includes/navigation.ejs') -%>
+  <main>
+    <h2>Add New Item</h2>
+    <form class="product-form" action="/admin/<% if(product) { %>edit-product/<%=product.id%><% } else {%>add-product<%}%> " method="POST">
+      <div class="form-control">
+        <label for="title">Item Title</label>
+        <input type="text" id="title" name="title" value="<%if(product){%><%=product.title%><%}%>"/>
+      </div>
+      <div class="form-control">
+        <label for="imageUrl">Item Image</label>
+        <input type="text" id="imageUrl" name="imageUrl"  value="<%if(product){%><%=product.imageUrl%><%}%>"/>
+      </div>
+      <div class="form-control">
+        <label for="price">Item Price</label>
+        <input type="text" id="price" name="price" step="any"  value="<%if(product){%><%=product.price%><%}%>"/>
+      </div>
+      <div class="form-control">
+        <label for="description">Item Description</label>
+        <textarea id="description" name="description" rows="5" ><%if(product){%><%=product.description%><%}%></textarea>
+      </div>
+      <button type="submit"><% if(product) { %> Update Item <% } else {%> Add Item <% } %></button>
+    </form>
+  </main>
+<%- include('../includes/end.ejs') -%>
