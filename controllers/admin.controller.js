@@ -1,22 +1,40 @@
 const Product = require("../models/product.model");
 
 exports.getAddProduct = (req, res, next) => {
-  res.render("admin/add-product", {
+  res.render("admin/edit-product", {
     docTitle: "Add Product",
-    formsCSS: true,
+    product: null,
     path: '/admin/add-product',
   });
 };
 
 exports.postAddProduct = (req, res, next) => {
   const {title, imageUrl, description, price} = req.body
+  const existingItemId = req.params?.productId;
   const product = new Product(title, imageUrl, description, price);
-  product.save();
-  res.redirect("/");
+  if(existingItemId){
+    product.id = existingItemId
+    product.update(existingItemId)
+  }else{
+    product.save();
+  }
+  res.redirect("/admin/products");
 };
 
-exports.updateProduct = (req,res,next) => {
+exports.getEditProduct = async (req,res,next) => {
+  const { productId } = req.params
+  const product = await Product.fetchById(productId)
+  res.render("admin/edit-product", {
+    docTitle: "Edit Product",
+    product,
+    path: '/admin/edit-product',
+  });
+}
 
+exports.deleteProduct = async (req,res,next) => {
+  const { productId } = req.body;
+  await Product.destroy(productId)
+  res.redirect('/admin/products')
 }
 
 exports.getProducts = async (req, res, next) => {
