@@ -9,7 +9,7 @@ module.exports = class Product {
     this.title = title;
     this.description = description
     this.imageUrl = imageUrl
-    this.price = parseFloat(price)
+    this.price = price
   }
   
   async save(){
@@ -23,6 +23,33 @@ module.exports = class Product {
     }
     products.push(this)
     writeFile(dbPath, JSON.stringify(products),(err)=> console.log(err))
+  }
+
+  async update(id){
+    let updatedProducts = [];
+    try {
+      const content = await getFileContent(dbPath)
+      const products = JSON.parse(content)
+      const productIndex = products.findIndex(product => product.id === id)
+      updatedProducts = [...products]
+      updatedProducts[productIndex] = this
+    } catch (error) {
+      console.log(error)
+    }
+    writeFile(dbPath, JSON.stringify(updatedProducts),(err)=> console.log(err))
+  }
+
+  static async destroy(id){
+    let products = [];
+    let filteredProducts = [];
+    try {
+      const content = await getFileContent(dbPath)
+      products = JSON.parse(content)
+      filteredProducts = products.filter(product => product.id !== id)
+    } catch (error) {
+      console.log(error)
+    }
+    writeFile(dbPath, JSON.stringify(filteredProducts),(err)=> console.log(err))
   }
 
   static async fetchById(id){

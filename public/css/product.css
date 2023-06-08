@@ -23,8 +23,8 @@
     text-overflow: ellipsis;
 }
 
-.product__description:hover, .product__title:hover {
+/* .product__description:hover, .product__title:hover {
     overflow:visible;
     text-overflow:unset;
     white-space:normal;
-}
+} */
