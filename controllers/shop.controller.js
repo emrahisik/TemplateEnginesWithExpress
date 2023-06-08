@@ -1,13 +1,8 @@
-const { path, readFile} = require('../utils/CRUDL')
 const Product = require("../models/product.model");
 const Cart = require("../models/cart.model")
 
-const cartDbPath = path.join(require.main.path, 'db', 'cart.json')
-
 exports.getCart = async(req,res,next)=>{
-  const jsonItemsInCart = await readFile(cartDbPath)
-  const itemsInCart = JSON.parse(jsonItemsInCart)
-  console.log(itemsInCart)
+  const itemsInCart = await Cart.fetchCart()
   res.render('shop/cart',{
     docTitle: 'My Cart',
     items: itemsInCart,
@@ -17,8 +12,13 @@ exports.getCart = async(req,res,next)=>{
 
 exports.postCart = async (req,res,next)=>{
   const { productId, ...rest } = req.body;
-  const product = await Product.fetchById(productId)
-  await Cart.addToCart({product, quantity: rest?.quantity||1})
+  await Cart.addToCart({productId, quantity: rest?.quantity||1})
+  res.redirect('/cart')
+}
+
+exports.deleteCart = async (req,res,next)=>{
+  const { productId } = req.body;
+  await Cart.removeFromCart(productId)
   res.redirect('/cart')
 }
 
