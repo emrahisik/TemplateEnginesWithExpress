@@ -9,7 +9,7 @@
     font-weight: 600;
 }
 .form-control input, .form-control textarea{
-    border: 2px solid rgb(49, 4, 104);
+    border: 1px solid rgb(49, 4, 104);
     margin: 0.5rem 0;
     padding: 0.5rem;
     font: inherit;
@@ -24,7 +24,7 @@ button{
     color: rgb(49, 4, 104);
     padding: .75rem;
     background-color: orange;
-    border: 2px solid rgb(49, 4, 104);
+    border: 1px solid rgb(49, 4, 104);
     border-radius: 1.5rem;
     cursor: pointer;
     font-weight: 800;
